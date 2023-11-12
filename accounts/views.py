@@ -7,3 +7,6 @@ def home(request):
 
 def products(request):
     return HttpResponse('products')
+
+def services(request):
+    return HttpResponse('services')
