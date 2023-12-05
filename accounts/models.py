@@ -13,9 +13,8 @@ class Customer(models.Model):
 
 class Product(models.Model):
     CATEGORY = (
-                    ('Indoor'),
-                    ('Outdoor'),
-
+                    ('Indoor', 'Indoor'),
+                    ('Outdoor', 'Outdoor'),
     )
 
     name = models.CharField(max_length=50, null=True)
