@@ -8,7 +8,7 @@ class Customer(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name + "  " + self.phone
+        return self.name 
 
 class Tag(models.Model):
     name = models.CharField(max_length=200, null=True) #null=True essentially makes it OK to not set a default value
