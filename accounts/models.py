@@ -31,7 +31,7 @@ class Product(models.Model):
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
-        return self.name
+        return self.name 
 
 class Order(models.Model):
     STATUS = (
