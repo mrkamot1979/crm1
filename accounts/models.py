@@ -9,6 +9,7 @@ class Customer(models.Model):
 
     def __str__(self):
         return self.name 
+        
 
 class Tag(models.Model):
     name = models.CharField(max_length=200, null=True) #null=True essentially makes it OK to not set a default value
@@ -46,5 +47,5 @@ class Order(models.Model):
    
     def __str__(self):
         return self.customer.name + " " + str(self.product) + " " + str(self.date_created)
-        #return self.customer
+        #return self.customer.name
         #return self.status
