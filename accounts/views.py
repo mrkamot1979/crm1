@@ -8,6 +8,8 @@ def home(request):
     orders = Order.objects.all()
     customers = Customer.objects.all()
 
+    total_customers = customers.count()
+
     context = {'orders':orders, 'customers':customers}
 
    
