@@ -18,11 +18,7 @@ def home(request):
                'customers' : customers,
                'total_orders' : total_orders,
                'delivered' : delivered,
-               'pending' : pending,
-
-
-               
-               
+               'pending' : pending,           
                }
 
    
