@@ -28,5 +28,6 @@ def products(request):
     products = Product.objects.all() #this will gather all of the Products from the model
     return render(request, 'accounts/products.html', {'products' : products})
 
-def customer(request):
+def customer(request, pk):
+    customer = Customer.object.get(id=pk) #to get the specific Customer via Primar Key (pk)
     return render(request, 'accounts/customer.html')
