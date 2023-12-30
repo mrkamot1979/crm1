@@ -31,10 +31,12 @@ def products(request):
 def customer(request, pk):
     customer = Customer.objects.get(id=pk) #to get the specific Customer via Primar Key (pk)
     total_order = customer.order_set.all().count()
+    orders = customer.order_set.all()
 
     
 
     context = {'customer' : customer, 
                'total_order' : total_order,
+               'orders' : orders,
                }
     return render(request, 'accounts/customer.html', context)
