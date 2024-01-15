@@ -40,3 +40,14 @@ def customer(request, pk):
                'orders' : orders,
                }
     return render(request, 'accounts/customer.html', context)
+
+#CRUD
+
+def createOrder(request):
+
+    context = {
+
+
+    }
+
+    return render(request, 'accounts/order_form.html', context)
