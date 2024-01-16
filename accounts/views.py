@@ -44,9 +44,7 @@ def customer(request, pk):
 #CRUD
 
 def createOrder(request):
-
     form = OrderForm()
-
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -57,4 +55,9 @@ def createOrder(request):
         'form' : form
     }
 
+    return render(request, 'accounts/order_form.html', context)
+
+def updateOrder(request, pk):
+    form = OrderForm()
+    context = {'form' : form}
     return render(request, 'accounts/order_form.html', context)
