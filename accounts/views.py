@@ -58,6 +58,15 @@ def createOrder(request):
     return render(request, 'accounts/order_form.html', context)
 
 def updateOrder(request, pk):
-    form = OrderForm()
+
+    order = Order.objects.get(id=pk) #this line is used to get the specific order via the order ID
+    form = OrderForm(instance=order) #populates the form with the data to be edited
+    if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
+        form = OrderForm(request.POST, instance=order) #dont forget the "instance=order" to update the instance
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+
     context = {'form' : form}
     return render(request, 'accounts/order_form.html', context)
