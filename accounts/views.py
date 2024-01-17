@@ -76,6 +76,7 @@ def deleteOrder(request, pk):
     if request.method == 'POST':
         order.delete()
         return redirect('/')
+    
     context = {
         'item' : order
     }
