@@ -5,10 +5,11 @@
 <P>Are you sure you want to delete "{{ item }}"?</P>
 
 <form method="POST">
+    {% csrf_token %}
     <a href="{% url 'home' %}">Cancel<a>
 
 
     <input type="submit" value="Confirm">
 </form>
 
-{% end block %}
+{% endblock %}
