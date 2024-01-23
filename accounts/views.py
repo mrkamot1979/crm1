@@ -33,8 +33,6 @@ def customer(request, pk):
     total_order = customer.order_set.all().count()
     orders = customer.order_set.all()
 
-    
-
     context = {'customer' : customer, 
                'total_order' : total_order,
                'orders' : orders,
