@@ -41,7 +41,8 @@ def customer(request, pk):
 
 #CRUD
 
-def createOrder(request):
+def createOrder(request, pk):
+    customer = Customer.objects.get(id=pk)
     form = OrderForm()
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
         form = OrderForm(request.POST)
