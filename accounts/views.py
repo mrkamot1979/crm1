@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.forms import inlineformset_factory
 from .models import *
 from .forms import OrderForm #needs to be imported so that we can use it in the view below
  
@@ -42,6 +43,7 @@ def customer(request, pk):
 #CRUD
 
 def createOrder(request, pk):
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
     customer = Customer.objects.get(id=pk)
     form = OrderForm(initial={'customer' : customer}) #this populates the form with the pre-selected customer
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
