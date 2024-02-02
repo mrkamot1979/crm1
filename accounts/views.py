@@ -45,7 +45,8 @@ def customer(request, pk):
 def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
     customer = Customer.objects.get(id=pk)
-    form = OrderForm(initial={'customer' : customer}) #this populates the form with the pre-selected customer
+    formset = OrderFormSet(instance=customer)
+    #form = OrderForm(initial={'customer' : customer}) #this populates the form with the pre-selected customer
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
         form = OrderForm(request.POST)
         if form.is_valid():
@@ -53,7 +54,7 @@ def createOrder(request, pk):
             return redirect('/')
 
     context = { 
-        'form' : form
+        'formset' : formset
     }
 
     return render(request, 'accounts/order_form.html', context)
