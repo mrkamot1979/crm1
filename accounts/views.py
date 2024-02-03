@@ -43,7 +43,7 @@ def customer(request, pk):
 #CRUD
 
 def createOrder(request, pk):
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'))
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status')) #arguments are Parent model (Customer), and Child model (Order)
     customer = Customer.objects.get(id=pk)
     formset = OrderFormSet(instance=customer)
     #form = OrderForm(initial={'customer' : customer}) #this populates the form with the pre-selected customer
@@ -60,7 +60,6 @@ def createOrder(request, pk):
     return render(request, 'accounts/order_form.html', context)
 
 def updateOrder(request, pk):
-
     order = Order.objects.get(id=pk) #this line is used to get the specific order via the order ID
     form = OrderForm(instance=order) #populates the form with the data to be edited
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
