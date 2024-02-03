@@ -43,14 +43,15 @@ def customer(request, pk):
 #CRUD
 
 def createOrder(request, pk):
-    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status')) #arguments are Parent model (Customer), and Child model (Order)
+    OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10) #arguments are Parent model (Customer), and Child model (Order)
     customer = Customer.objects.get(id=pk)
-    formset = OrderFormSet(instance=customer)
+    formset = OrderFormSet(queryset=Order.objects.none(), instance=customer)
     #form = OrderForm(initial={'customer' : customer}) #this populates the form with the pre-selected customer
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
-        form = OrderForm(request.POST)
-        if form.is_valid():
-            form.save()
+        #form = OrderForm(request.POST)
+        formset = OrderFormSet(request.POST, instance=customer)
+        if formset.is_valid():
+            formset.save()
             return redirect('/')
 
     context = { 
