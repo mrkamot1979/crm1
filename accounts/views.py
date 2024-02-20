@@ -45,7 +45,7 @@ def customer(request, pk):
 def createOrder(request, pk):
     OrderFormSet = inlineformset_factory(Customer, Order, fields=('product', 'status'), extra=10) #arguments are Parent model (Customer), and Child model (Order)
     customer = Customer.objects.get(id=pk)
-    formset = OrderFormSet(queryset=Order.objects.none(), instance=customer)
+    formset = OrderFormSet(queryset=Order.objects.none(), instance=customer) #if we have objects there there, do not reference them, just show new/blank items.
     #form = OrderForm(initial={'customer' : customer}) #this populates the form with the pre-selected customer
     if request.method == 'POST': #whole process essentially returns the data back to the form and the form saves/processes the request
         #form = OrderForm(request.POST)
