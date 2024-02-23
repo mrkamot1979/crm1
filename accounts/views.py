@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.forms import inlineformset_factory
 from .models import *
 from .forms import OrderForm #needs to be imported so that we can use it in the view below
+from .filters import OrderFilter #for the filter functionality
  
 # Create your views here.
 def home(request):
@@ -34,9 +35,14 @@ def customer(request, pk):
     total_order = customer.order_set.all().count()
     orders = customer.order_set.all()
 
+    #filter works by getting the data and then filtering it based on the GET request and then displays it.
+    myFilter = OrderFilter(request.GET, queryset=orders)
+    orders = myFilter.qs 
+
     context = {'customer' : customer, 
                'total_order' : total_order,
                'orders' : orders,
+               'myFilter' : myFilter,
                }
     return render(request, 'accounts/customer.html', context)
 
