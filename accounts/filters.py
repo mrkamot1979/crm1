@@ -6,6 +6,8 @@ from .models import *
 
 #Class that will handle the filter
 class OrderFilter(django_filters.FilterSet):
+    start_date = DateFilter(field_name="date_created", lookup_expr='gte') #greaterthanorequal
+    end_date = DateFilter(field_name="date_created", lookup_expr='lte') #lessthanorequal
     class Meta:
         model = Order
         fields = '__all__'
